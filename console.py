@@ -113,18 +113,51 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, args):
-        """ Create an object of any class"""
-        if not args:
-            print("** class name missing **")
+    def do_create(self, arg):
+        """  Create a new instance of a class and print its id
+             Usage: create <Class name> <param 1> <param 2> <param 3>...
+        """
+        if not arg:
+            print("**class name missing **")
             return
-        elif args not in HBNBCommand.classes:
-            print("** class doesn't exist **")
+
+        args = arg.split()
+        class_name = args[0]
+
+        if class_name not in ["BaseModel", "State", "Place"]:
+            print("** class dosen't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
-        print(new_instance.id)
-        storage.save()
+
+        param_dict = {}
+
+        param_dict["created_at"] = datetime.now()
+        param_dict["updated_at"] = datetime.now()
+
+        for param in args[1:]:
+            key, value = param.split('=')
+
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1].replace('_',' ').replace('\\"', '"')
+            elif '.' in value:
+                try:
+                    value = float(value)
+                except ValueError:
+                    print("** invalid value format **")
+                    return
+                else:
+                    try:
+                        value = int(value)
+                    except ValueError:
+                        print("** invalid value format **")
+                        return
+
+                    param_dict[key] = value
+
+
+                    new_obj = eval(f"{class_name}(**param_dict)")
+                    new_obj.save()
+                    print(nex_obj.id)
+
 
     def help_create(self):
         """ Help information for the create method """
