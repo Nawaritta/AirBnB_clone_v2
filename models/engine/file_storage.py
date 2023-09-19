@@ -9,11 +9,11 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self, cls=None):
+    def all(self, clas=None):
         """ Returns the list of objects of one type of class
         """
-        if cls is not None:
-            return {k: v for k, v in self.__objects.items() if isinstance(v, cls)}
+        if clas is not None:
+            return {k: v for k, v in self.__objects.items() if isinstance(v, clas)}
         return self.__objects
 
     def new(self, obj):
@@ -29,11 +29,11 @@ class FileStorage:
                 temp[key] = val.to_dict()
             json.dump(temp, f)
 
-    def delete(self, obj=None):
+    def delete(self, objct=None):
         """ Delete obj from __objects if it's inside
         """
-        if obj is not None:
-            key = obj.__class__.__name__ + "." + obj.id
+        if objct is not None:
+            key = objct.__class__.__name__ + "." + objct.id
             if key in self.__objects:
                 del self.__objects[key]
 
