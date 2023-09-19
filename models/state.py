@@ -5,15 +5,19 @@ from datetime import datetime
 import models
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from os import getenv
+
 
 class State(BaseModel, Base):
     """ State class """
-    __tablename__ = "states"
-    name = Column(String(128), nullable=False)
-
-    if storage_type == 'db':
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
+        __tablename__ = "states"
+        name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state", cascade="all, delete")
     else:
+        name = ""
+        created_at = ""
+
         @property
         def cities(self):
             """ Returns the list of City instances in the current state """
