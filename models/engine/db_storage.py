@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """This module defines a class to manage the New engine DBStorage"""
+from models.base_model import BaseModel, Base
+from models import user, state, amenity, place, city, review
 from sqlalchemy import create_engine
-from models import user, state, city, amenity, place, review
 from sqlalchemy.orm import sessionmaker, scoped_session
-from models.base_model import Base
 from os import getenv
 
 class DBStorage:
@@ -28,11 +28,10 @@ class DBStorage:
 
     def all(self, cls=None):
         """Query on the current database session"""
-        from models import storage
         if cls:
             classes = [cls]
         else:
-            classes = [user.User, state.State,city.City,amenity.Amenity, place.Place, review.Review]
+            classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
         objects = {}
         for cls in classes:
             for obj in self.__session.query(cls).all():
