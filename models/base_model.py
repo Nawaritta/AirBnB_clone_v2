@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """This module defines a base class for all models in our hbnb clone"""
-from uuid import uuid4
 import models
 from datetime import datetime
 from sqlalchemy.orm import Session
@@ -26,13 +25,14 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """The Constructor of base model"""
+        import uuid
         self.id = str(uuid.uuid4())
         self.created_at = self.updated_at = datetime.utcnow()
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                if key != '__class__':
+                if key != "__class__":
                     setattr(self, key, value)
 
     def __str__(self):
