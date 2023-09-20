@@ -19,7 +19,6 @@ class HBNBCommand(cmd.Cmd):
 
     # determines prompt for interactive/non-interactive modes
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
-
     classes = {
                'BaseModel': BaseModel, 'User': User, 'Place': Place,
                'State': State, 'City': City, 'Amenity': Amenity,
@@ -102,6 +101,7 @@ class HBNBCommand(cmd.Cmd):
         """ Prints the help documentation for quit  """
         print("Exits the program with formatting\n")
 
+
     def do_EOF(self, arg):
         """ Handles EOF to exit program """
         print()
@@ -178,9 +178,11 @@ class HBNBCommand(cmd.Cmd):
 
         key = c_name + "." + c_id
         try:
-            print(storage._FileStorage__objects[key])
+            obj = storage._FileStorage__objects[key]
+            print(f"({c_name}) [{c_id}] {obj}")
         except KeyError:
             print("** no instance found **")
+
 
     def help_show(self):
         """ Help information for the show command """
