@@ -3,9 +3,11 @@
 from uuid import uuid4
 import models
 from datetime import datetime
+from sqlalchemy.orm import Session
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from os import getenv
+
 
 if getenv("HBNB_TYPE_STORAGE") == 'db':
     Base = declarative_base()
@@ -40,7 +42,7 @@ class BaseModel:
     def save(self):
         """Updates updated_at with current time when instance is changed"""
         self.updated_at = datetime.now()
-        models.storage.new(self)
+        '''models.storage.new(self)'''
         models.storage.save()
 
     def to_dict(self):

@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """This module defines a class to manage the New engine DBStorage"""
 from models.base_model import BaseModel, Base
-from models import user, state, amenity, place, city, review
+from models import place
+from models import user, state, amenity, city, review
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
@@ -28,10 +29,12 @@ class DBStorage:
 
     def all(self, cls=None):
         """Query on the current database session"""
+        from models import storage
         if cls:
             classes = [cls]
         else:
-            classes = [user.User, state.State, city.City, amenity.Amenity, place.Place, review.Review]
+            classes = [user.User, state.State, city.City,
+                       amenity.Amenity, place.Place, review.Review]
         objects = {}
         for cls in classes:
             for obj in self.__session.query(cls).all():
@@ -52,6 +55,8 @@ class DBStorage:
         """Delete from the current database session"""
         if obj:
             self.__session.delete(obj)
+        if not self.__session:
+            self.reload()
 
     def reload(self):
         """Create all tables in the database (feature of SQLAlchemy)"""
