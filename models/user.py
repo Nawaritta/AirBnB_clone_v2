@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 from os import getenv
 
+
 class User(BaseModel, Base):
     """Class user"""
     if getenv('HBNB_TYPE_STORAGE') == 'db':

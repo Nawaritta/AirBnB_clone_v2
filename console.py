@@ -14,6 +14,7 @@ from models.amenity import Amenity
 from models.review import Review
 import models
 
+
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
@@ -101,7 +102,6 @@ class HBNBCommand(cmd.Cmd):
         """ Prints the help documentation for quit  """
         print("Exits the program with formatting\n")
 
-
     def do_EOF(self, arg):
         """ Handles EOF to exit program """
         print()
@@ -148,7 +148,6 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
@@ -182,7 +181,6 @@ class HBNBCommand(cmd.Cmd):
             print(f"({c_name}) [{c_id}] {obj}")
         except KeyError:
             print("** no instance found **")
-
 
     def help_show(self):
         """ Help information for the show command """
@@ -344,6 +342,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
