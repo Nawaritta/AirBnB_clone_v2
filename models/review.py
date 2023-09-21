@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 from os import getenv
 
+
 class Review(BaseModel, Base):
     """Class Review """
 
