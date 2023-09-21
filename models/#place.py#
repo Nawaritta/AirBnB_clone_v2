@@ -48,3 +48,5 @@ class Place(BaseModel, Base):
                     place_rev.append(review)
 
             return place_rev
+
+        city_list = []                                                    26             for city in storage.all("City").values():                         27                 if city.state_id == self.id:                                  28                     city_list.append(city)                                    29             return city_list

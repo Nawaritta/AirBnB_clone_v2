@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 
-import models
 from models.base_model import BaseModel, Base
 from datetime import datetime
 from sqlalchemy import Column, String
@@ -22,6 +21,7 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """ Returns the list of City instances in the current state """
+            from models import storage
             city_list = []
             for city in storage.all("City").values():
                 if city.state_id == self.id:
