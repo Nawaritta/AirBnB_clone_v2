@@ -177,8 +177,12 @@ class HBNBCommand(cmd.Cmd):
 
         key = c_name + "." + c_id
         try:
+            from models import storage
+            print(storage.all()[key])
+            """
             obj = storage._FileStorage__objects[key]
             print(f"({c_name}) [{c_id}] {obj}")
+            """
         except KeyError:
             print("** no instance found **")
 
