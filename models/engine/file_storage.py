@@ -13,7 +13,8 @@ class FileStorage:
         """ Returns the list of objects of one type of class
         """
         if clas is not None:
-            return {k: v for k, v in self.__objects.items() if isinstance(v, clas)}
+            return {k: v for k, v in self.__objects.items()
+                    if isinstance(v, clas)}
         return self.__objects
 
     def new(self, obj):
@@ -57,6 +58,6 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
