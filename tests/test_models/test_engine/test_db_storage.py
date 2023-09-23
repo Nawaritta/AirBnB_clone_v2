@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""test for file storage"""
+"""test for file storage
+in data base 
+"""
 import unittest
 import pep8
 import json
@@ -18,7 +20,7 @@ from models.engine.db_storage import DBStorage
 
 @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db', 'NO DB')
 class TestDBStorage(unittest.TestCase):
-    '''this will test the DBStorage'''
+    '''we  have tests  the DBStorage'''
 
     @classmethod
     def setUpClass(self):
