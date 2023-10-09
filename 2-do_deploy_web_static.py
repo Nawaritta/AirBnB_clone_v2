@@ -23,12 +23,12 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/')
         release_directory = "/data/web_static/releases/{}".format(base)
         sudo('mkdir -p {}'.format(release_directory))
-        sudo('tar -xzf /tmp/{} -C {}/'.format(archive_filename, release_directory))
+        sudo(f"tar -xzf /tmp/{archive_filename} -C {release_directory}/")
         sudo('rm /tmp/{}'.format(archive_filename))
-        sudo('mv {}/web_static/* {}/'.format(release_directory, release_directory))
+        sudo("mv {release_directory}/web_static/* {release_directory}/")
         sudo('rm -rf /data/web_static/current')
         sudo('ln -s {} "/data/web_static/current"'.format(release_directory))
-        
+
         return True
     except Exception as e:
         return False

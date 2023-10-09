@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Fabric script (based on the file 3-deploy_web_static.py) 
+Fabric script (based on the file 3-deploy_web_static.py)
 that deletes out-of-date archives, using the function do_clean
 """
 import os
@@ -31,5 +31,3 @@ def do_clean(number=0):
         for _ in range(len(remote_archives) - number_to_keep):
             archive_to_delete = remote_archives.pop(0)
             run("rm -rf {}/{}".format(remote_archive_dir, archive_to_delete))
-
-
