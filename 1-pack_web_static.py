@@ -14,9 +14,9 @@ def do_pack():
         os.makedirs("versions")
 
     time = datetime.now().strftime("%Y%m%d%H%M%S")
-    archive_name = f"web_static_{time}.tgz"
+    archive_name = "web_static_{}.tgz".format(time)
     try:
-        local(f"tar -cvzf versions/{archive_name} web_static")
-        return f"versions/{archive_name}"
+        local("tar -cvzf versions/{} web_static".format(archive_name))
+        return ("versions/{}".format(archive_name))
     except Exception as e:
         return None

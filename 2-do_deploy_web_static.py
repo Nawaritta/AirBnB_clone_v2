@@ -23,7 +23,7 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/')
         release_directory = "/data/web_static/releases/{}".format(base)
         sudo('mkdir -p {}'.format(release_directory))
-        sudo(f"tar -xzf /tmp/{archive_filename} -C {release_directory}/")
+        sudo("tar -xzf /tmp/{} -C {}/".format(archive_filename, release_directory))
         sudo('rm /tmp/{}'.format(archive_filename))
         sudo("mv {release_directory}/web_static/* {release_directory}/")
         sudo('rm -rf /data/web_static/current')
