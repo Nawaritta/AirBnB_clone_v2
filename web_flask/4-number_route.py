@@ -27,6 +27,7 @@ def text(text):
 def display(text):
     return "Python {}".format(text.replace("_", " "))
 
+
 @app.route('/number/<int:n>', strict_slashes=False)
 def display_Int(n):
     return f"{n} is a number"
