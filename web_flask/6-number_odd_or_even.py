@@ -30,7 +30,7 @@ def display(text):
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def display_Int(n):
-    return f"{n} is a number"
+    return "{} is a number".format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
