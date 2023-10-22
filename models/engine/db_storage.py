@@ -67,7 +67,7 @@ class DBStorage:
             bind=self.__engine, expire_on_commit=False))
 
 
-
     def close(self):
-        """to display HBNB data using Flask """
-        self.__session.remove()
+        """to display HBNB data using Flask"""
+        self.__session.__class__.close(self.__session)
+        self.reload()
