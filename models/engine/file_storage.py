@@ -63,5 +63,5 @@ class FileStorage:
             pass
 
     def close(self):
-        """to display HBNB data using Flask"""
+        """ deserializing the JSON file to objects"""
         self.reload()

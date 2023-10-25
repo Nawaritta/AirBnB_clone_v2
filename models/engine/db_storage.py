@@ -68,6 +68,6 @@ class DBStorage:
 
 
     def close(self):
-        """to display HBNB data using Flask"""
-        self.__session.__class__.close(self.__session)
-        self.reload()
+        """Closes the active session"""
+        self.__session.close()
+        self.__session.reload()
