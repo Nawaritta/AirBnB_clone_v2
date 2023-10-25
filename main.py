@@ -16,6 +16,8 @@ state_2 = State(name="Arizona")
 print("New state: {}".format(state_2))
 state_2.save()
 
+print("done----------------- ")
+
 city_1_1 = City(state_id=state_1.id, name="Napa")
 print("New city: {} in the state: {}".format(city_1_1, state_1))
 city_1_1.save()
@@ -27,11 +29,22 @@ print("New city: {} in the state: {}".format(city_2_1, state_2))
 city_2_1.save()
 
 
+print("done----------------- ")
+
 """
  Verification
 """
 print("")
 all_states = storage.all(State)
+print("lenth {}".format(len(all_states)))
+"""
 for state_id, state in all_states.items():
+    print(" state --{}".format(state.cities))
+    for city in state.cities:
+        print("Find the city {} in the state {}".format(city, state))
+
+"""
+for state_id, state in all_states.items():
+    print(" state --{}".format(state.cities))
     for city in state.cities:
         print("Find the city {} in the state {}".format(city, state))

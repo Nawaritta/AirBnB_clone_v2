@@ -14,7 +14,7 @@ class FileStorage:
         """
         if clas is not None:
             return {k: v for k, v in self.__objects.items()
-                    if isinstance(v, type(clas))}
+                    if (type(v) == clas)}
         return self.__objects
 
     def new(self, obj):
