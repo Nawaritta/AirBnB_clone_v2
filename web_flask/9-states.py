@@ -10,8 +10,7 @@ app = Flask("__name__")
 
 @app.teardown_appcontext
 def remove_session(exception):
-    if storage is not None:
-        storage.close()
+    storage.close()
 
 @app.route("/states_list", strict_slashes=False)
 def display_states():
